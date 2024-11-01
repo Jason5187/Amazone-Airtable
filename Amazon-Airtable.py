@@ -55,7 +55,7 @@ def amazon_crawling(amazon_url):
     options.add_argument("--no-sandbox")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36") # 일반 브라우저로 보이게 하는 방법
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) #셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(version="114.0.5735.90").install()), options=options) #셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
     driver.get(amazon_url)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") # 셀레니움 디텍션 스크립트 비활성화
     
