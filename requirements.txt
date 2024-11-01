@@ -1,0 +1,7 @@
+BeautifulSoup
+selenium
+requests
+re
+time
+random
+pyairtable
