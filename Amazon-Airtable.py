@@ -29,6 +29,19 @@ AIRTABLE_URL = "https://api.airtable.com/v0/app9LqHdsBpu2g0I9/tblJoe6QFIoEye2V1"
 HEADERS = {'Authorization': f'Bearer {AIRTABLE_API_KEY}'}
 
 def get_driver():
+    options = webdriver.ChromeOptions()  # Selenium 옵션 객체 생성
+
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option("useAutomationExtension", False)
+    options.add_experimental_option("detach", True) # 창 안꺼지게 하는 방법
+    options.add_argument("lang=en-US,en")
+    options.add_argument("--headless") # 백그라운드에서 셀레니움 실행
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.224 Safari/537.36") # 일반 브라우저로 보이게 하는 방법
+
     return webdriver.Chrome(
         service=Service(
             ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
@@ -49,22 +62,7 @@ def amazon_crawling(amazon_url):
         else:
             return None
 
-    options = Options()  # Selenium 옵션 객체 생성
-
     random_sec = random.uniform(2,4)
-
-    
-
-    options.add_argument("--disable-blink-features=AutomationControlled") # 자동화 감지 안되게 하는 방법
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option("useAutomationExtension", False)
-    options.add_experimental_option("detach", True) # 창 안꺼지게 하는 방법
-    options.add_argument("lang=en-US,en")
-    options.add_argument("--headless") # 백그라운드에서 셀레니움 실행
-    options.add_argument("--disable-gpu")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--no-sandbox")
-    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.224 Safari/537.36") # 일반 브라우저로 보이게 하는 방법
 
 
     driver = get_driver() #셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
