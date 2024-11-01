@@ -1,6 +1,6 @@
 streamlit
 beautifulsoup4
-selenium
+selenium==4.19
 requests
 pyairtable
 webdriver_manager
