@@ -11,7 +11,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import requests
 import warnings
 import time
-import subprocess
 import random
 from pyairtable import Table, Base
 
@@ -30,9 +29,13 @@ HEADERS = {'Authorization': f'Bearer {AIRTABLE_API_KEY}'}
 
 def get_chrome_version():
     # 현재 설치된 Chrome 버전 가져오기
-    version_info = subprocess.check_output(['chromium-browser', '--version']).decode('utf-8')
-    version = version_info.split(' ')[-1]
-    return version
+    try:
+        version_info = subprocess.check_output(['chromium', '--version'])
+        version = version_info.split(' ')[-1].decode('utf-8').strip()
+        return version
+    except FileNotFoundError:
+        print("Chromium is not installed or not found in the PATH.")
+        return None
 
 def amazon_crawling(amazon_url):
 
