@@ -50,9 +50,11 @@ def amazon_crawling(amazon_url):
         else:
             return None
 
-    #options = Options()  # Selenium 옵션 객체 생성
+    options = Options()  # Selenium 옵션 객체 생성
 
     random_sec = random.uniform(2,4)
+
+    
 
     options.add_argument("--disable-blink-features=AutomationControlled") # 자동화 감지 안되게 하는 방법
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
