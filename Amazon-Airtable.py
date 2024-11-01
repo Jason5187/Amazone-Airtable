@@ -11,7 +11,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import requests
 import warnings
 import time
-import subprocess
 import random
 from pyairtable import Table, Base
 
@@ -28,16 +27,6 @@ AIRTABLE_API_KEY = "YOUR_AIRTABLE_API_KEY"
 AIRTABLE_URL = "https://api.airtable.com/v0/app9LqHdsBpu2g0I9/tblJoe6QFIoEye2V1"
 HEADERS = {'Authorization': f'Bearer {AIRTABLE_API_KEY}'}
 
-def get_chrome_version():
-    # 현재 설치된 Chrome 버전 가져오기
-    try:
-        version_info = subprocess.check_output(['chromium', '--version'])
-        # 바이트 문자열을 UTF-8 문자열로 변환
-        version = version_info.decode('utf-8').split(' ')[-1].strip()
-        return version
-    except FileNotFoundError:
-        print("Chromium is not installed or not found in the PATH.")
-        return None
 
 def amazon_crawling(amazon_url):
 
@@ -67,10 +56,8 @@ def amazon_crawling(amazon_url):
     options.add_argument("--no-sandbox")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.224 Safari/537.36") # 일반 브라우저로 보이게 하는 방법
 
-    # 현재 Chrome 버전 가져오기
-    chrome_version = get_chrome_version()
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)#셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(version="114").install()), options=options)#셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
     driver.get(amazon_url)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") # 셀레니움 디텍션 스크립트 비활성화
     
