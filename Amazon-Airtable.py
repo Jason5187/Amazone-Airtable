@@ -70,7 +70,7 @@ def amazon_crawling(amazon_url):
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") # 셀레니움 디텍션 스크립트 비활성화
     
     # 이미지와 상세 정보 추출
-    WebDriverWait(driver, 20).until(
+    WebDriverWait(driver, 30).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, 'li.a-spacing-small.item.imageThumbnail.a-declarative'))
     )
     sub_images = driver.find_elements(By.CSS_SELECTOR, 'li.a-spacing-small.item.imageThumbnail.a-declarative')
