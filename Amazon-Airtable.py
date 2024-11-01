@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -27,6 +28,13 @@ AIRTABLE_API_KEY = "YOUR_AIRTABLE_API_KEY"
 AIRTABLE_URL = "https://api.airtable.com/v0/app9LqHdsBpu2g0I9/tblJoe6QFIoEye2V1"
 HEADERS = {'Authorization': f'Bearer {AIRTABLE_API_KEY}'}
 
+def get_driver():
+        return webdriver.Chrome(
+            service=Service(
+                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+            ),
+            options=options,
+        )
 
 def amazon_crawling(amazon_url):
 
@@ -57,7 +65,7 @@ def amazon_crawling(amazon_url):
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.224 Safari/537.36") # 일반 브라우저로 보이게 하는 방법
 
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager(version="114").install()), options=options)#셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
+    driver = get_driver() #셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
     driver.get(amazon_url)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") # 셀레니움 디텍션 스크립트 비활성화
     
