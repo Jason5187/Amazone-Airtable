@@ -32,7 +32,8 @@ def get_chrome_version():
     # 현재 설치된 Chrome 버전 가져오기
     try:
         version_info = subprocess.check_output(['chromium', '--version'])
-        version = version_info.split(' ')[-1].decode('utf-8').strip()
+        # 바이트 문자열을 UTF-8 문자열로 변환
+        version = version_info.decode('utf-8').split(' ')[-1].strip()
         return version
     except FileNotFoundError:
         print("Chromium is not installed or not found in the PATH.")
