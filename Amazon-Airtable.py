@@ -62,7 +62,7 @@ def amazon_crawling(amazon_url):
         else:
             return None
 
-    random_sec = random.uniform(4,6)
+    random_sec = random.uniform(10,12)
 
 
     driver = get_driver() #셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
