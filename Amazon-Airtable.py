@@ -70,7 +70,7 @@ def amazon_crawling(amazon_url):
     # 현재 Chrome 버전 가져오기
     chrome_version = get_chrome_version()
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager(version=chrome_version).install()), options=options)#셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)#셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
     driver.get(amazon_url)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") # 셀레니움 디텍션 스크립트 비활성화
     
