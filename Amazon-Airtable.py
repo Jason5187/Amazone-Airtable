@@ -62,12 +62,14 @@ def amazon_crawling(amazon_url):
         else:
             return None
 
-    random_sec = random.uniform(10,12)
+    random_sec = random.uniform(20,22)
 
 
     driver = get_driver() #셀레니움 최신 버전에서는 자동으로 webdriver 설치 후 반영
     driver.get(amazon_url)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") # 셀레니움 디텍션 스크립트 비활성화
+
+    time.sleep(random_sec)
     
     # 이미지와 상세 정보 추출
     WebDriverWait(driver, 30).until(
