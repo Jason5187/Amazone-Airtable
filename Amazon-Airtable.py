@@ -29,7 +29,6 @@ AIRTABLE_URL = "https://api.airtable.com/v0/app9LqHdsBpu2g0I9/tblJoe6QFIoEye2V1"
 HEADERS = {'Authorization': f'Bearer {AIRTABLE_API_KEY}'}
 
 def get_driver():
-    options = Options()
     return webdriver.Chrome(
         service=Service(
             ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
