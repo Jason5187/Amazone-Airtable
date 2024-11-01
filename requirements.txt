@@ -1,8 +1,6 @@
 streamlit
-selenium==4.19
 beautifulsoup4
 requests
 pyairtable==2.3.3
-webdriver_manager
-undetected_chromedriver
-setuptools
+seleniumbase
+webdriver-manager
