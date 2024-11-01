@@ -11,6 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import requests
 import warnings
 import time
+import subprocess
 import random
 from pyairtable import Table, Base
 
