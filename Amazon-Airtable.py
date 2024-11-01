@@ -29,6 +29,7 @@ AIRTABLE_URL = "https://api.airtable.com/v0/app9LqHdsBpu2g0I9/tblJoe6QFIoEye2V1"
 HEADERS = {'Authorization': f'Bearer {AIRTABLE_API_KEY}'}
 
 def get_driver():
+        options = webdriver.ChromeOptions()
         return webdriver.Chrome(
             service=Service(
                 ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
@@ -49,7 +50,7 @@ def amazon_crawling(amazon_url):
         else:
             return None
 
-    options = Options()  # Selenium 옵션 객체 생성
+    #options = Options()  # Selenium 옵션 객체 생성
 
     random_sec = random.uniform(2,4)
 
