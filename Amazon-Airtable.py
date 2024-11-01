@@ -33,7 +33,7 @@ def get_driver():
         service=Service(
             ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
         ),
-        options=Options,
+        options=options,
     )
 
 def amazon_crawling(amazon_url):
