@@ -3,4 +3,4 @@ beautifulsoup4
 requests
 pyairtable==2.3.3
 selenium
-webdriver-manager
+webdriver-manager == 4.0.2
